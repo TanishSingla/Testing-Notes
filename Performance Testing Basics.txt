@@ -1,0 +1,133 @@
+Performance Testing Basics:
+
+What is Performance Testing? Performance testing is the process of evaluating the speed, responsiveness, and stability of a software application or system under various load conditions.
+
+Types of Performance Testing: Understand the various types of performance testing, including:
+
+Load Testing: Evaluating system behavior under expected load.
+Stress Testing: Assessing system performance beyond its capacity limits.
+Scalability Testing: Measuring an application's ability to scale with increased load.
+Spike Testing: Evaluating how the system handles sudden spikes in user load.
+Soak Testing: Assessing system stability over an extended period.
+Endurance Testing: Determining system performance over a long duration.
+
+
+How to create first JMETER Test :- 
+
+step 1 :- create  a test plan
+step 2 :- create a thread group(Users)
+step 3 :- Add a sampler (Http)
+step 4 :- Add listeners
+step 5 :- Run the test
+
+step -> 2 :- 
+In JMeter, a "Test Plan" is the highest-level element that serves as a container for your test scenarios. To create a new test plan:
+
+In the left-hand panel, right-click on "Test Plan."
+Select "Add > Threads (Users) > Thread Group." This will create a Thread Group, which represents a group of virtual users (threads) that will execute your test.
+
+Configure thread Group :- 
+n the right-hand panel, under the "Thread Group," you'll see various settings. Here's a basic configuration:
+
+Number of Threads (users): Set the number of virtual users you want to simulate.
+Ramp-Up Period (in seconds): Specify how long it takes to start all the threads. For example, if you set 10, JMeter will gradually start the specified number of threads over 10 seconds.
+Loop Count: Set the number of times you want the test to loop.
+You can adjust these settings according to your test scenario.
+
+step -> 3 :- 
+Now, let's add an HTTP Request sampler to simulate making requests to a web server. This is a fundamental step for testing web applications:
+
+Under your Thread Group, right-click, select "Add > Sampler > HTTP Request."
+
+In the HTTP Request panel, configure the following:
+
+Protocol: HTTP or HTTPS, depending on your web application.
+Server Name or IP: Enter the domain name or IP address of the website you want to test.
+Port Number: The default HTTP port is 80, and HTTPS is 443.
+Path: Specify the path to the resource you want to request (e.g., "/path/to/resource").
+
+step -> 4:-
+Add listeners too view results :- 
+To view the results of your test, you need to add a listener:
+
+Under your Thread Group, right-click, select "Add > Listener > View Results Tree."
+The "View Results Tree" listener will display detailed information about each request and response during the test.
+
+
+Save Your Test Plan
+
+Before running the test, save your test plan:
+
+Go to "File > Save Test Plan As" and choose a location to save the file with a .jmx extension.
+
+
+
+Listeners :- Listeners in Apache JMeter play a crucial role in performance testing. They are components that provide various ways to view and analyze the results of your test plan. Listeners help you gather data, such as response times, throughput, error rates, and more, during and after the execution of your test scripts.  
+
+Latency :- Latency, in the context of computer networks and performance testing, refers to the time it takes for data to travel from its source to its destination. It is the delay or lag that occurs when data is transmitted between two points in a network. Latency is typically measured in milliseconds (ms) and is an essential factor in determining the responsiveness and efficiency of network communication.
+
+Latency = time to first byte
+lets say time for sending request to getting response back time is 2sec
+and in b/w at 1 sec the response is send than thats the latency.
+--------------------------------------------------1000ms------------------------------------------------------------
+0ms----------------------------------------------------------------------------------------------------------2000ms
+
+
+
+
+
+Aggregate Report (Listener) :- 
+The Aggregate Report is a listener in Apache JMeter that provides a summary of the performance test results in a tabular format. It is a valuable tool for gaining insights into the overall performance of your test plan. Here's a detailed explanation of the Aggregate Report listener.
+Label: This column displays the names of the samplers or transactions from your test plan. Each row corresponds to a different sampler.
+
+Sample Count: This column shows the total number of samples or requests sent during the test execution.
+
+Average: The "Average" column displays the average response time for the samples in milliseconds.
+
+Median: This column represents the median (50th percentile) response time. It's the middle value in the sorted list of response times.
+
+90% Line: The "90% Line" column displays the response time that 90% of the samples achieved or were faster than. It's an indicator of the response time experienced by most users.
+
+Min: This column shows the shortest (minimum) response time observed during the test.
+
+Max: The "Max" column displays the longest (maximum) response time observed during the test.
+
+Error%: This column calculates the percentage of samples that resulted in errors or failures during the test.
+
+Throughput: The "Throughput" column displays the number of requests per minute (RPM) processed by the sampler.
+
+Interpreting the Data:
+The Aggregate Report provides a concise summary of how your test performed. Here's how to interpret the data:
+
+Response Times: The "Average," "Median," "90% Line," "Min," and "Max" columns give you insights into the distribution of response times. You can identify the average response time, the range of response times, and the level of variability.
+
+Error Rate: The "Error%" column shows the percentage of failed requests or errors. A high error rate may indicate issues with your application under load.
+
+Throughput: The "Throughput" column indicates how many requests were processed per minute. It helps you understand the system's capacity to handle concurrent users.
+
+Sample Count: The "Sample Count" column tells you how many times each sampler was executed, giving you an idea of the workload.
+
+Using the Data:
+You can use the data from the Aggregate Report to:
+
+Identify performance bottlenecks by examining high average response times or error rates.
+Compare different samplers or transactions to find areas of improvement.
+Determine if your system meets performance requirements by checking if response times are within acceptable limits.
+Monitor how the system scales with increasing load by analyzing throughput.
+The Aggregate Report listener is a valuable tool for assessing the overall performance of your JMeter test plan and helping you fine-tune your application for optimal performance.
+
+
+
+Assertions :- 
+checks on request and response
+ Assertions help ensure that the responses and behaviors of the system under test meet specific criteria and that there are no unexpected errors or issues.
+
+->Response Assertion :- Response assertions are used to verify the patterns in the response body received from the server. Different pattern matching rules like contains, matches, equal, etc. can be used to verify the response. These are the basic elements of the response assertion.
+
+->Duration Assertion :- we can verify if the request is being processed within the given amount of time.
+
+->size Assertion :- Size assertion is used to verify the expected number of bytes. We can add the expected size in bytes and verify with the different types of comparisons like >, <, =, etc.
+
+->HTML Assertion
+This assertion is used to check the syntax of the HTML given by the server in response.
+
